@@ -1,0 +1,60 @@
+<%- include('../layout/head.ejs')%>
+<header class="header">
+    <%- include('../layout/header.ejs')%>
+    <%- include('../layout/nav.ejs')%>
+</header>
+
+<main class="main">
+    <section class="create-client">
+        <div class="container">
+            <h1 class="table__headline">Назва таблиці: <%=post.title %></h1>
+            <div class="create-clien__name">
+                <h3 class="create-clien__headline">Добавити клієнта</h3>
+                <form action="" class="create-client__form">
+                    <input type="text" class="create-client__form--input" id="client-headline" name="clientheadline">
+                    <input type="submit" class="client-button button create-client__form--submit" value="Добавити" >
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="table">
+        <div class="container">
+            <div class="table__head">
+                <div class="table__head--name">
+                    <h3 class="table__head--describe">Ім'я клієнта</h3>
+                </div>
+                <div class="table__head--name">
+                    <h3 class="table__head--describe">Борг клієнта</h3>
+                </div>
+                <div class="table__head--name">
+                    <h3 class="table__head--describe">Кількість купленого товару</h3>
+                </div>
+            </div>
+            <div class="table__body" id="out">
+                <div class='table__point'> 
+                    <div class='table__point--line'>
+                        <h3 class='table__point--out'>
+                    
+                        </h3> 
+                    </div> 
+                    <div class='table__point--line'> 
+                        <h3 class='table__point--out'>
+                            0
+                        </h3> 
+                    </div>
+                    <div class='table__point--line'> 
+                        <h3 class='table__point--out'>
+                            0
+                        </h3> 
+                    </div>
+                    <div class='table__point--line table__point--delete'>
+                        <h3 class='table__point--out table__point--out-delete'>
+                            Видалити
+                        </h3>  
+                    </div>
+                </div>      
+            </div>
+        </div>
+    </section>
+</main>
+<%- include('../layout/footer.ejs')%>
