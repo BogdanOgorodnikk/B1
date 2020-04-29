@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0">
+    <title>B1</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../stylesheets/styles.css">
+  </head>
+  <body>
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="header__top--box">
+                <!-- Logo -->
+                <div class="top__box--logo">
+                    <a href="/"><img src="../../../images/logo.png" alt=""></a>
+                </div>
+                <!-- Якщо не авторизований -->
+                <div class="top__box--sign">
+                    <% if(!user.id && !user.login) { %>
+                    <ul class="sign__list">
+                        <li class="sign__item"><a href="/sign_in" class="sign__link">Ввійти</a></li>
+                        <li class="sign__item"><a href="/sign_up" class="sign__link">Регістрація</a></li>
+                    </ul>
+                    <!-- Якщо авторизований -->
+                    <% } else { %>
+                    <div class="sign__list">
+                      <div class="sign__user">
+                          <div class="sign__user--icon show__table">
+                              <img class="sign__user--photos" src="../../../images/user.jpg" alt="">
+                          </div>
+                          <!-- Меню користувача -->
+                          <div class="sign__menu none">
+                              <div class="sign__menu--point">
+                                  <p class="sign__point--item"><%= user.login %></p>
+                                  <p class="sign__point--item"><a href="/" class="sign__poin--link">Мій профіль</a></p>
+                                  <p class="sign__point--item"><a href="/tables/my_tables/<%= user.login %>" class="sign__poin--link">Мої таблиці</a></p>
+                                  <p class="sign__point--item"><a href="/api/auth/logout" class="sign__poin--link">Вихід</a></p>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Додавання нової головної таблиці -->
+                      <div class="sign__user sign__table">
+                          <div class="sign__table--icon show__table">
+                              <i class="fas fa-plus sign__user--photo"></i>
+                          </div>
+                          <div class="sign__menu sign__table--menu none">
+                              <div class="sign__menu--point sign__table--point">
+                                  <p class="sign__point--item"><a href="/post/add" class="sign__poin--link">Нова головна таблиця</a></p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <% } %>
+  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header__menu">
+        <div class="container">
+            <nav class="nav header__nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#" class="nav__link">Text</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Text</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Text</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Text</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Text</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<main class="main table">
+    <section class="client-info">
+        <div class="container">
+            <h2 class="client-info__client-name" id="<%=client.id %>">Ім'я клієнта: <%=client.headline %></h2>
+         <div class="client-info__create">
+             <form action="" class="client-info__createss">
+                 <div class="client-info__box">
+                     <div class="client-info__item"><input id="client-info__name" class="client-info__input" type="text" placeholder="Назва товару"></div>
+                     <div class="client-info__item"><input id="client-info__charact" class="client-info__input" type="text" placeholder="Характеристика"></div>
+                     <div class="client-info__item"><input id="client-info__number" class="client-info__input" type="text" placeholder="Кількість"></div>
+                     <div class="client-info__item"><input id="client-info__price" class="client-info__input" type="text" placeholder="Ціна"></div>
+                     <div class="client-info__item"><input id="client-info__pladge" class="client-info__input" type="text" placeholder="Оплачено товар"></div>
+                     <div class="client-info__item"><input  class="button client-info__button" type="submit" value="Створити"></div>
+                 </div>
+             </form>
+         </div>
+        </div>
+    </section>
+    <section class="client-product">
+         <div class="container">
+             <div class="client-product__headline">
+                 <div class="client-product__item">
+                     <h3 class="client-product__info">Назва товару</h3>
+                 </div>
+                 <div class="client-product__item">
+                     <h3 class="client-product__info">Характеристика</h3>
+                 </div>
+                 <div class="client-product__item">
+                     <h3 class="client-product__info">Кількість</h3>
+                 </div>
+                 <div class="client-product__item">
+                     <h3 class="client-product__info">Ціна</h3>
+                 </div>
+                 <div class="client-product__item">
+                     <h3 class="client-product__info">Дата</h3>
+                 </div>
+                 <div class="client-product__item">
+                     <h3 class="client-product__info">Оплачено</h3>
+                 </div>
+                 <div class="client-product__item">
+                     <h3 class="client-product__info">Загальна сума</h3>
+                 </div>
+             </div>
+             <div class="client-product__out">
+                <% for (var i = 0; i < products.length; i++) { %> 
+                 <div class="client-product__out--line">
+                     <div class="client-product__line--info">
+                         <h3 class="client-product__line--text"><%=products[i].title %></h3>
+                     </div>
+                     <div class="client-product__line--info">
+                         <h3 class="client-product__line--text"><%=products[i].characteristic %></h3>
+                     </div>
+                     <div class="client-product__line--info">
+                         <h3 class="client-product__line--text"><%=products[i].number %></h3>
+                     </div>
+                     <div class="client-product__line--info">
+                         <h3 class="client-product__line--text"><%=products[i].price %></h3>
+                     </div>
+                     <div class="client-product__line--info">
+                         <h3 class="client-product__line--text"><%= moment(products[i].data).format("MM-DD-YYYY") %></h3>
+                     </div>
+                     <div class="client-product__line--info">
+                         <h3 class="client-product__line--text"><%=products[i].pledge %></h3>
+                     </div>
+                     <div class="client-product__line--info">
+                         <h3 class="client-product__line--text"><%=products[i].debt %></h3>
+                     </div>
+                 </div>
+                 <% } %>
+             </div>
+         </div>
+     </section>
+ </main>
+ <footer class="footer">
+    <div class="container">
+        <h2 class="footer__headline">1B</h2>
+    </div>
+</footer>
+<script src="https://kit.fontawesome.com/75a1b1807b.js"></script>
+<script src="../../../javascripts/jquery.min.js"></script>
+<script src="../../../javascripts/auth.js"></script>
+<script src="../../../javascripts/post.js"></script>
+<script src="../../../javascripts/client.js"></script>
+<script src="../../../javascripts/product.js"></script>
+<script src="../../../javascripts/showMenu.js"></script>
+</body>
+</html>

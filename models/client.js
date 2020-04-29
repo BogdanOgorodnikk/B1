@@ -9,27 +9,9 @@ const schema = new Schema(
       type: String,
       required: true
     },
-    describe: {
-        type: String
-    },
-    productCount: {
-        type: Number
-    },
-    productPrice: {
-        type: Number
-    },
-    productDate: {
-        type: Date
-    },
-    sum: {
-        type: Number
-    },
-    debt: {
-        type: Number
-    },
-    tableId: {
+    post: {
       type: Schema.Types.ObjectId,
-      ref: "Post"
+      ref: 'Post'
     }
   },
   {

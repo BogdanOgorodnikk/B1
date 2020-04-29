@@ -7,7 +7,7 @@
 <main class="main">
     <section class="create-client">
         <div class="container">
-            <h1 class="table__headline">Назва таблиці: <%=post.title %></h1>
+            <h1 class="table__headline" id="<%=post.id %>">Назва таблиці: <%=post.title %></h1>
             <div class="create-clien__name">
                 <h3 class="create-clien__headline">Добавити клієнта</h3>
                 <form action="" class="create-client__form">
@@ -31,28 +31,30 @@
                 </div>
             </div>
             <div class="table__body" id="out">
-                <div class='table__point'> 
-                    <div class='table__point--line'>
-                        <h3 class='table__point--out'>
-                    
-                        </h3> 
-                    </div> 
-                    <div class='table__point--line'> 
-                        <h3 class='table__point--out'>
-                            0
-                        </h3> 
-                    </div>
-                    <div class='table__point--line'> 
-                        <h3 class='table__point--out'>
-                            0
-                        </h3> 
-                    </div>
-                    <div class='table__point--line table__point--delete'>
-                        <h3 class='table__point--out table__point--out-delete'>
-                            Видалити
-                        </h3>  
-                    </div>
-                </div>      
+                <% for (var i = 0; i < clients.length; i++) { %> 
+                    <div class='table__point' > 
+                        <div class='table__point--line'>
+                            <h3 class='table__point--out'>
+                                <a class="table__point--out-link" href="/products/<%=clients[i].url %>"><%=clients[i].headline %></a>
+                            </h3> 
+                        </div> 
+                        <div class='table__point--line'> 
+                            <h3 class='table__point--out'>
+                                0
+                            </h3> 
+                        </div>
+                        <div class='table__point--line'> 
+                            <h3 class='table__point--out'>
+                                0
+                            </h3> 
+                        </div>
+                        <div class='table__point--line table__point--delete'>
+                            <h3 class='table__point--out table__point--out-delete'>
+                                Видалити
+                            </h3>  
+                        </div>
+                    </div>    
+                    <% } %>
             </div>
         </div>
     </section>

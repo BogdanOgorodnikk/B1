@@ -3,22 +3,6 @@ const router = express.Router();
 
 const models = require('../models');
 
-//Перевірка підключення користувача
-router.get('/:table', (req, res) => {
-    const userId = req.session.userId;
-    const userLogin = req.session.userLogin;    
-
-    if(!userId || !userLogin) {
-        res.redirect('/')
-    } else {
-          res.render('tables/table', {
-        user: {
-          id: userId,
-          login: userLogin
-        }
-      });  
-    }
-});
 
 router.post('/:table', (req, res) => {
     const userId = req.session.userId;
@@ -28,6 +12,7 @@ router.post('/:table', (req, res) => {
         res.redirect('/')
     } else {
       const headline = req.body.headline.trim().replace(/ +(?= )/g, '');
+      const post = req.body.post;
 
     if(!headline) {
         res.json({
@@ -43,7 +28,8 @@ router.post('/:table', (req, res) => {
         });
       } else {
         models.Client.create({        //Створення поста
-            headline
+            headline,
+            post
         }).then(client => {
             console.log(client);
             res.json({

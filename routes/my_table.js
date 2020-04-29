@@ -61,19 +61,22 @@ router.get('/:table', (req, res, next) => {
         err.status = 404;
         next(err);
       } else {
+        models.Client.find({
+          post: post.id
+        }).then(clients => {
         res.render('tables/table', {
           post,
+          clients,
           user: {
             id: userId,
             login: userLogin
           }
         });
+        });
       }
     });
   }
 });
-
-
 
 
 module.exports = router;

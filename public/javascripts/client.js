@@ -4,7 +4,8 @@ $(document).ready(function(){
         e.preventDefault();
         
         var data = {
-            headline: $('#client-headline').val()
+            headline: $('#client-headline').val(),
+            post: $(".table__headline").attr('id')
         };
         $.ajax({
             type: 'POST',

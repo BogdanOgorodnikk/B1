@@ -72,6 +72,8 @@ app.use('/api/auth', routes.auth);
 app.use('/post', routes.post);
 app.use('/tables', routes.my_table);
 app.use('/tables', routes.client);
+app.use('/products', routes.product);
+app.use('/products', routes.productadd);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
