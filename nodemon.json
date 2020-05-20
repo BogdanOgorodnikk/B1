@@ -3,7 +3,7 @@
     "env": {
       "NODE_ENV": "development",
       "PORT": 3000,
-      "MONGO_URL": "mongodb://localhost/bione"
+      "MONGO_URL": "mongodb+srv://user:user@cluster0-wx2ir.mongodb.net/test?retryWrites=true&w=majority"
     },
     "ext": ".js,.json",
     "watch": "./"
