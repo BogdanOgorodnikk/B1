@@ -5,7 +5,8 @@ $(document).ready(function(){
         
         var data = {
             headline: $('#client-headline').val(),
-            post: $(".table__headline").attr('id')
+            post: $(".table__headline").attr('id'),
+            owner: $(".create-client").attr('id')
         };
         $.ajax({
             type: 'POST',
@@ -17,7 +18,7 @@ $(document).ready(function(){
             if(!data.ok) {
               $('.create-client__form').before('<p class="register__error">' + data.error + '</p>');
             } else {
-             $(location).attr('href', '/');
+              location.reload();
             }
           });
       });

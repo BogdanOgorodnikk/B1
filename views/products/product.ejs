@@ -6,6 +6,7 @@
     <title>B1</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../stylesheets/styles.css">
+    <link rel="stylesheet" href="../../../stylesheets/responsive.css">
   </head>
   <body>
 <header class="header">
@@ -34,7 +35,6 @@
                           <div class="sign__menu none">
                               <div class="sign__menu--point">
                                   <p class="sign__point--item"><%= user.login %></p>
-                                  <p class="sign__point--item"><a href="/" class="sign__poin--link">Мій профіль</a></p>
                                   <p class="sign__point--item"><a href="/tables/my_tables/<%= user.login %>" class="sign__poin--link">Мої таблиці</a></p>
                                   <p class="sign__point--item"><a href="/api/auth/logout" class="sign__poin--link">Вихід</a></p>
                               </div>
@@ -61,12 +61,17 @@
     <div class="header__menu">
         <div class="container">
             <nav class="nav header__nav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="#" class="nav__link">Text</a></li>
-                    <li class="nav__item"><a href="#" class="nav__link">Text</a></li>
-                    <li class="nav__item"><a href="#" class="nav__link">Text</a></li>
-                    <li class="nav__item"><a href="#" class="nav__link">Text</a></li>
-                    <li class="nav__item"><a href="#" class="nav__link">Text</a></li>
+                <div class="nav__btn">
+                    <button data-target="#nav-main" type="button" class="btn-nav">
+                      <span class="btn-nav__line"></span>
+                      <span class="btn-nav__line"></span>
+                      <span class="btn-nav__line"></span>
+                    </button>
+                  </div>
+                <ul class="nav__list" id="nav-main">
+                    <li class="nav__item"><a href="/" class="nav__link">На головну</a></li>
+                    <li class="nav__item"><a href="/tables/my_tables/<%= user.login %>" class="nav__link">Мої таблиці</a></li>
+                    <li class="nav__item"><a href="/post/add" class="nav__link">Добавити таблицю</a></li>
                 </ul>
             </nav>
         </div>
@@ -76,7 +81,7 @@
     <section class="client-info">
         <div class="container">
             <h2 class="client-info__client-name" id="<%=client.id %>">Ім'я клієнта: <%=client.headline %></h2>
-         <div class="client-info__create">
+         <div class="client-info__create" id="<%=client.owner %>">
              <form action="" class="client-info__createss">
                  <div class="client-info__box">
                      <div class="client-info__item"><input id="client-info__name" class="client-info__input" type="text" placeholder="Назва товару"></div>
@@ -115,32 +120,43 @@
                      <h3 class="client-product__info">Загальна сума</h3>
                  </div>
              </div>
-             <div class="client-product__out">
-                <% for (var i = 0; i < products.length; i++) { %> 
+             <div class="client-product__out--top">
+                <% for (var i = 0; i < products.length; i++) { %>
                  <div class="client-product__out--line">
                      <div class="client-product__line--info">
-                         <h3 class="client-product__line--text"><%=products[i].title %></h3>
+                         <h3 class="client-product__line--text"><span class="client-product__line--responsive">Назва товару: </span> <%=products[i].title %></h3>
                      </div>
                      <div class="client-product__line--info">
-                         <h3 class="client-product__line--text"><%=products[i].characteristic %></h3>
+                         <h3 class="client-product__line--text"><span class="client-product__line--responsive">Характеристика: </span> <%=products[i].characteristic %></h3>
                      </div>
                      <div class="client-product__line--info">
-                         <h3 class="client-product__line--text"><%=products[i].number %></h3>
+                         <h3 class="client-product__line--text"><span class="client-product__line--responsive">Кількість: </span> <%=products[i].number %></h3>
                      </div>
                      <div class="client-product__line--info">
-                         <h3 class="client-product__line--text"><%=products[i].price %></h3>
+                         <h3 class="client-product__line--text"><span class="client-product__line--responsive">Ціна: </span> <%=products[i].price %></h3>
                      </div>
                      <div class="client-product__line--info">
-                         <h3 class="client-product__line--text"><%= moment(products[i].data).format("MM-DD-YYYY") %></h3>
+                         <h3 class="client-product__line--text"><span class="client-product__line--responsive">Дата: </span> <%= moment(products[i].data).format("MM-DD-YYYY") %></h3>
                      </div>
                      <div class="client-product__line--info">
-                         <h3 class="client-product__line--text"><%=products[i].pledge %></h3>
+                         <h3 class="client-product__line--text"><span class="client-product__line--responsive">Оплачено: </span> <%=products[i].pledge %></h3>
                      </div>
                      <div class="client-product__line--info">
-                         <h3 class="client-product__line--text"><%=products[i].debt %></h3>
+                         <h3 class="client-product__line--text"><span class="client-product__line--responsive">Загальна сума: </span> <%=products[i].debt %></h3>
                      </div>
                  </div>
                  <% } %>
+                 <div class="client-product__out--bottom">
+                    <div class="client-product__line--info-debt">
+                        <h3 class="client-product__line--text">Борг: 
+                            <% for (var i = 0; i < prosum.length; i++) { %>
+                                <% if(prosum[i]["_id"] == client.id) { %>
+                             <span class="client-product__line--debt"><%=prosum[i]["salary"]%></span>
+                             <% } %>
+                             <% } %>
+                        </h3>
+                    </div>
+                 </div>
              </div>
          </div>
      </section>

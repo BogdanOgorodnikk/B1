@@ -11,12 +11,10 @@ const schema = new Schema(
       type: String
     },
     number: {
-      type: Number, 
-      required: true
+      type: Number
     },
     price: {
-      type: Number, 
-      required: true
+      type: Number
     },
     data: {
       type: Date,
@@ -26,11 +24,18 @@ const schema = new Schema(
       type: Number
     },
     debt: {
-        type: Number,
+        type: Number
+    },
+    debts: {
+      type: Number
     },
     client: {
       type: Schema.Types.ObjectId,
       ref: 'Client'
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
     }
   },
   {

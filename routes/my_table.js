@@ -10,6 +10,8 @@ router.get('/my_tables/:login', (req, res) => {
   const userLogin = req.session.userLogin;
   const login = req.params.login;
 
+  
+
   models.User.findOne({
     login
   }).then(user => {
@@ -64,19 +66,64 @@ router.get('/:table', (req, res, next) => {
         models.Client.find({
           post: post.id
         }).then(clients => {
-        res.render('tables/table', {
+          models.Product.aggregate([ 
+            {  
+              $group :{ _id: "$client",
+              salary: { 
+                $sum : "$debts"
+               }
+            }
+            }
+            ]).then(proos => {
+          res.render('tables/table', {
           post,
           clients,
+          proos,
           user: {
             id: userId,
             login: userLogin
           }
         });
+            })
+
         });
       }
     });
   }
 });
 
+// делете for url
+router.get('/:table/:owner/:id', (req, res, next) => {
+  const userId = req.session.userId;
+  const userLogin = req.session.userLogin;
+  const id = req.params.id.trim().replace(/ +(?= )/g, '');
+  const owner = req.params.owner.trim().replace(/ +(?= )/g, '');
+ 
+  if(!userId || !userLogin) {
+    res.redirect('/')
+} else if(owner != userId) {
+  res.redirect('/')
+} else {
+    if (!id || !owner) {
+      const err = new Error('Not Found');
+      err.status = 404;
+      next(err);
+      } else {
+        models.Client.findByIdAndRemove(id)
+      .then(cli => {
+        res.render('tables/table', {
+        cli,
+        user: {
+          id: userId,
+          login: userLogin
+        }
+      });
+      res.redirect('back');
+      })
+      }      
+}
+
+ 
+});
 
 module.exports = router;

@@ -17,18 +17,25 @@ router.post('/:product', (req, res) => {
       const price = req.body.price.trim().replace(/ +(?= )/g, '');
       const pledge = req.body.pledge.trim().replace(/ +(?= )/g, '');
       const client = req.body.client;
+      const owner = req.body.owner;
 
     if(!title) {
         res.json({
             ok: false,
-            error: 'Все поля должны быть заполнены!',
-            fields: ['login', 'password', 'passwordConfirm']
+            error: 'Поле "Назва товару" повине бути заповненим!',
+            fields: ['title']
           });
-      } else if (title.length < 3 || title.length > 32) {
+      } else if (title.length < 1 || title.length > 64) {
         res.json({
           ok: false,
-          error: 'Длина заголовка от 3 до 32 символов!',
+          error: 'Довжина назви таблиці від 1 до 64 символів!',
           fields: ['title']
+        });
+      } else if (owner != userId) {
+        res.json({
+          ok: false,
+          error: 'Ви не власник',
+          fields: ['owner']
         });
       } else {
         models.Product.create({        //Створення поста
@@ -38,7 +45,9 @@ router.post('/:product', (req, res) => {
             price,
             pledge,
             debt: price*number,
-            client
+            debts: (price*number)-pledge, 
+            client,
+            owner
         }).then(product => {
             console.log(product);
             res.json({

@@ -9,7 +9,8 @@ $(document).ready(function(){
             number: $('#client-info__number').val(),
             price: $('#client-info__price').val(),
             pledge: $('#client-info__pladge').val(),
-            client: $(".client-info__client-name").attr('id')
+            client: $(".client-info__client-name").attr('id'),
+            owner: $(".client-info__create").attr('id')
         };
         $.ajax({
             type: 'POST',
@@ -21,7 +22,7 @@ $(document).ready(function(){
             if(!data.ok) {
               $('.client-info__createss').before('<p class="register__error">' + data.error + '</p>');
             } else {
-             $(location).attr('href', '/');
+              location.reload();
             }
           });
       });

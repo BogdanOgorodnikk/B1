@@ -16,7 +16,7 @@ $('.publish-button').on('click', function(e) {
         if(!data.ok) {
           $('.new-table__form').before('<p class="register__error">' + data.error + '</p>');
         } else {
-         $(location).attr('href', '/');
+         $(location).attr('href', '/post/add');
         }
       });
   });

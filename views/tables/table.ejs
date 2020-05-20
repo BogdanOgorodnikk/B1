@@ -5,9 +5,9 @@
 </header>
 
 <main class="main">
-    <section class="create-client">
+    <section class="create-client" id="<%=post.owner%>">
         <div class="container">
-            <h1 class="table__headline" id="<%=post.id %>">Назва таблиці: <%=post.title %></h1>
+            <h1 class="table__headline" id="<%=post.id %>"><%=post.title %></h1>
             <div class="create-clien__name">
                 <h3 class="create-clien__headline">Добавити клієнта</h3>
                 <form action="" class="create-client__form">
@@ -26,35 +26,31 @@
                 <div class="table__head--name">
                     <h3 class="table__head--describe">Борг клієнта</h3>
                 </div>
-                <div class="table__head--name">
-                    <h3 class="table__head--describe">Кількість купленого товару</h3>
-                </div>
             </div>
             <div class="table__body" id="out">
                 <% for (var i = 0; i < clients.length; i++) { %> 
+                    <% if(clients[i].owner == user.id) { %> 
                     <div class='table__point' > 
                         <div class='table__point--line'>
                             <h3 class='table__point--out'>
-                                <a class="table__point--out-link" href="/products/<%=clients[i].url %>"><%=clients[i].headline %></a>
+                                <a class="table__point--out-link" href="/products/<%=clients[i].url %>"><span class="table__point--out-respons">Ім'я клієнта:</span> <%=clients[i].headline %></a>
                             </h3> 
                         </div> 
                         <div class='table__point--line'> 
-                            <h3 class='table__point--out'>
-                                0
+                            <h3 class='table__point--out'><span class="table__point--out-respons">Борг клієнта:</span>
+                                <% for (var j = 0; j < proos.length; j++) { %>
+                                    <% if(proos[j]["_id"] == clients[i].id) { %>
+                                  <%=proos[j]["salary"]%>
+                                 <% } %>
+                                 <% } %>
                             </h3> 
                         </div>
-                        <div class='table__point--line'> 
-                            <h3 class='table__point--out'>
-                                0
-                            </h3> 
-                        </div>
-                        <div class='table__point--line table__point--delete'>
-                            <h3 class='table__point--out table__point--out-delete'>
-                                Видалити
-                            </h3>  
+                        <div class='table__point--line table__point--delete' id="<%=clients[i].id %>">
+                            <a id="<%=clients[i].id %>" class='table__point--out table__point--out-delete' href="<%=post.url %>/<%=clients[i].owner %>/<%=clients[i].id %>">Видалити</a>
                         </div>
                     </div>    
                     <% } %>
+                <% } %>
             </div>
         </div>
     </section>

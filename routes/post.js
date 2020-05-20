@@ -33,13 +33,13 @@ router.post('/add', (req, res) => {
     if(!title) {
         res.json({
             ok: false,
-            error: 'Все поля должны быть заполнены!',
-            fields: ['login', 'password', 'passwordConfirm']
+            error: 'Всі поля повинні бути заповнені!',
+            fields: ['title']
           });
       } else if (title.length < 3 || title.length > 32) {
         res.json({
           ok: false,
-          error: 'Длина заголовка от 3 до 32 символов!',
+          error: 'Довжина назви таблиці від 3 до 32 символів!',
           fields: ['title']
         });
       } else {

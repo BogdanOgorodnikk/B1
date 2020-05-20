@@ -23,6 +23,12 @@ router.post('/register', (req, res) => {
       error: 'Длина логина от 3 до 16 символов!',
       fields: ['login']
     });
+  } else if (password.length < 6 || password.length > 16) {
+    res.json({
+      ok: false,
+      error: 'Длина пароль от 6 до 16 символов!',
+      fields: ['password']
+    });
   } else if (password !== passwordConfirm) {
     res.json({
       ok: false,

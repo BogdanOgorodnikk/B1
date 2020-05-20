@@ -10,8 +10,8 @@ const models = require('../models');
     const url = req.params.product.trim().replace(/ +(?= )/g, '');
     const userId = req.session.userId;
     const userLogin = req.session.userLogin;
-  
-  
+
+
     if (!url) {
       const err = new Error('Not Found');
       err.status = 404;
@@ -28,15 +28,28 @@ const models = require('../models');
           models.Product.find({
             client: client.id
           }).then(products => {
-          res.render('products/product', {
+          models.Product.aggregate([ 
+            {  
+              $group :{ _id: "$client",
+              salary: { 
+                $sum : "$debts"
+               }
+            }
+            }
+            ])
+            .then(prosum => {
+            res.render('products/product', {
             client,
             products,
             moment,
+            prosum,
             user: {
               id: userId,
               login: userLogin
             }
           });
+            })
+
           });
 
         }

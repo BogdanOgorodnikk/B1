@@ -12,24 +12,33 @@ router.post('/:table', (req, res) => {
         res.redirect('/')
     } else {
       const headline = req.body.headline.trim().replace(/ +(?= )/g, '');
+      const debt = req.body.debt;
       const post = req.body.post;
+      const owner = req.body.owner;
 
     if(!headline) {
         res.json({
             ok: false,
-            error: 'Все поля должны быть заполнены!',
-            fields: ['login', 'password', 'passwordConfirm']
+            error: 'Всі поля повинні бути заповнені!',
+            fields: ['headline']
           });
       } else if (headline.length < 3 || headline.length > 32) {
         res.json({
           ok: false,
-          error: 'Длина заголовка от 3 до 32 символов!',
+          error: 'Довжина назви таблиці від 3 до 32 символів!',
           fields: ['headline']
+        });
+      } else if (owner != userId) {
+        res.json({
+          ok: false,
+          error: 'Ви не власник!',
+          fields: ['owner']
         });
       } else {
         models.Client.create({        //Створення поста
             headline,
-            post
+            post,
+            owner
         }).then(client => {
             console.log(client);
             res.json({

@@ -13,7 +13,8 @@ body {
   font-family: 'Raleway', sans-serif; 
 }
 .container {
-  max-width: 1200px;
+  max-width: 1220px;
+  padding: 0 10px;
   margin: 0 auto; }
 .main {
   background: #a4a4a4;
@@ -440,7 +441,7 @@ body {
   font-size: 16px;
   color: #131313; }
 .table__head--name {
-  margin-left: 260px; }
+  width: 400px; }
 .table__head--name:first-child {
   margin-left: 0px; }
 
@@ -479,6 +480,10 @@ body {
   width: 200px;
   cursor: pointer; }
 
+.table__point--out-delete {
+  text-decoration: none;
+  display: block; }
+
 .table__point--delete:hover {
   background: #ff0036;
   border: 1px solid #ff0036; }
@@ -487,12 +492,13 @@ body {
   color: #fff; }
 .register__error {
   display: inline-block;
-  color: #ff0000;
-  border: 2px solid #ff0000;
-  padding: 16px 20px;
+  color: #ad0404;
+  border: 2px solid #ad0404;
+  padding: 12px 16px;
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
   font-weight: 700;
+  margin-bottom: 20px;
 }
 .table__headline {
   font-family: 'Raleway', sans-serif;
@@ -543,9 +549,18 @@ body {
   font-size: 18px;
   color: #262626; }
 
-.client-product__out {
-  margin-top: 20px;
+.client-product__out--top {
+  margin-top: 20px; }
+
+.client-product__out--bottom {
   margin-bottom: 20px; }
+
+.client-product__line--info-debt {
+  border: 1px solid #262626;
+}
+.client-product__line--debt {
+  font-weight: 700;
+}
 
 .client-product__out--line {
   display: -webkit-box;
@@ -568,5 +583,37 @@ body {
   font-size: 20px;
   color: #262626; 
   margin-top: 20px; }
+
+.client-product__line--responsive {
+  display: none; }
+  .btn-nav {
+    border: 0;
+    background: none;
+    padding: 0.7rem;
+    cursor: pointer;
+    border-radius: 0.2rem;
+  }
+  .btn-nav:hover {
+    background: #dadada;
+  }
+  .btn-nav__line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 1px;
+    background: #000;
+    margin-bottom: 3px;
+  }
+  .btn-nav__line:last-child {
+    margin-bottom: 0;
+  }
+  .nav__btn {
+    text-align: left;
+    margin: 0.7rem 0;
+    display: none;
+  }
+  .table__point--out-respons {
+    display: none;
+  }
 .none {
   display: none; }
