@@ -2,11 +2,12 @@
   "name": "b1",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "PORT=3000 node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "postinstall": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +28,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.9.7",
     "mongoose-url-slugs": "^1.0.2",
+    "postinstall": "^0.7.0",
     "read": "^1.0.7",
     "transliter": "^2.2.1",
     "vinyl-fs": "^3.0.3",
