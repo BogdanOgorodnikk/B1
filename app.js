@@ -92,7 +92,12 @@ app.use((error, req, res, next) => {
   });
 });
 
-
+var reqTimer = setTimeout(function wakeUp() {
+  request("https://nameless-gorge-19527.herokuapp.com", function() {
+     console.log("WAKE UP DYNO");
+  });
+  return reqTimer = setTimeout(wakeUp, 1200000);
+}, 1200000);
 
 app.listen(config.PORT, () => 
 console.log(`Example app listening on port ${config.PORT}!`)
