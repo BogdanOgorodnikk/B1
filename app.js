@@ -21,7 +21,7 @@ mongoose.connection
     console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
   });
 
-mongoose.connect(config.MONGO_URL, { useMongoClient: true });
+mongoose.connect("mongodb+srv://user:user@cluster0-wx2ir.mongodb.net/test?retryWrites=true&w=majority", { useMongoClient: true });
 
 //express
 const app = express();
