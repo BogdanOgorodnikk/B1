@@ -3,7 +3,6 @@ const router = express.Router();
 
 const models = require('../models');
 
-// Перевірка чи підключений
 router.get('/add', (req, res) => {
     const userId = req.session.userId;
     const userLogin = req.session.userLogin;
@@ -20,7 +19,6 @@ router.get('/add', (req, res) => {
     }
 });
 
-// Створення нової загальної таблиці
 router.post('/add', (req, res) => {
     const userId = req.session.userId;
     const userLogin = req.session.userLogin;
@@ -44,7 +42,7 @@ router.post('/add', (req, res) => {
         });
       } else {
 
-        models.Post.create({        //Створення загальної таблиці
+        models.Post.create({
             title,
             owner: userId
         }).then(post => {
@@ -53,6 +51,9 @@ router.post('/add', (req, res) => {
             ok: true
           });            
         }).catch(err =>{
+            console.log(title.length < 3, "Помилка: Довжина менше 3 символів!");
+            console.log(title.length > 32, "Помилка: Довжина більше 32 символів!");
+            console.log(!title < 3, "Помилка: Поля не заповнені!");
             console.log(err);
             console.log(post);
             res.json({

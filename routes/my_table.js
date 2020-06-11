@@ -4,13 +4,11 @@ const router = express.Router();
 const models = require('../models');
 
 
-// GET for my_table
+
 router.get('/my_tables/:login', (req, res) => {
   const userId = req.session.userId;
   const userLogin = req.session.userLogin;
   const login = req.params.login;
-
-  
 
   models.User.findOne({
     login
@@ -42,13 +40,10 @@ router.get('/my_tables/:login', (req, res) => {
   });
 });
 
-
-// GET for url
 router.get('/:table', (req, res, next) => {
   const url = req.params.table.trim().replace(/ +(?= )/g, '');
   const userId = req.session.userId;
   const userLogin = req.session.userLogin;
-
 
   if (!url) {
     const err = new Error('Not Found');
@@ -92,7 +87,6 @@ router.get('/:table', (req, res, next) => {
   }
 });
 
-// делете for url
 router.get('/:table/:owner/:id', (req, res, next) => {
   const userId = req.session.userId;
   const userLogin = req.session.userLogin;
@@ -122,8 +116,6 @@ router.get('/:table/:owner/:id', (req, res, next) => {
       })
       }      
 }
-
- 
 });
 
 module.exports = router;

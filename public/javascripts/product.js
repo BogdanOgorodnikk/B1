@@ -2,7 +2,9 @@ $(document).ready(function(){
 
     $('.client-info__button').on('click', function(e) {
         e.preventDefault();
-        
+        $('p.register__error').remove();
+        $('.register__error').removeClass('register__error');
+
         var data = {
             title: $('#client-info__name').val(),
             characteristic: $('#client-info__charact').val(),

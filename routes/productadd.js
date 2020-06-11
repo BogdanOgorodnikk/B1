@@ -22,7 +22,7 @@ router.post('/:product', (req, res) => {
     if(!title) {
         res.json({
             ok: false,
-            error: 'Поле "Назва товару" повине бути заповненим!',
+            error: 'Поле "Назва товару" повинне бути заповненим!',
             fields: ['title']
           });
       } else if (title.length < 1 || title.length > 64) {
@@ -38,7 +38,7 @@ router.post('/:product', (req, res) => {
           fields: ['owner']
         });
       } else {
-        models.Product.create({        //Створення поста
+        models.Product.create({ 
             title,
             characteristic,
             number,
@@ -54,8 +54,16 @@ router.post('/:product', (req, res) => {
             ok: true
           });            
         }).catch(err =>{
+            console.log(!title, "Помилка: Поле назва товару повинне бути заповненим!");
+            console.log(title.length < 1, "Помилка: Довжина має бути більше 1 символа");
+            console.log(title.length > 64, "Помилка: Довжина має бути менше 64 символів");
+            console.log(owner != userId, "Помилка: Ви не власник");
             console.log(err);
             console.log(product);
+            expects = debt - pledge;
+            if(expects !== debts) {
+              console.log(expects);
+            }
             res.json({
             ok: false
           }); 
@@ -63,6 +71,5 @@ router.post('/:product', (req, res) => {
       }  
     }
 });
-
 
 module.exports = router;

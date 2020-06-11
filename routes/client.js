@@ -12,7 +12,6 @@ router.post('/:table', (req, res) => {
         res.redirect('/')
     } else {
       const headline = req.body.headline.trim().replace(/ +(?= )/g, '');
-      const debt = req.body.debt;
       const post = req.body.post;
       const owner = req.body.owner;
 
@@ -35,7 +34,7 @@ router.post('/:table', (req, res) => {
           fields: ['owner']
         });
       } else {
-        models.Client.create({        //Створення поста
+        models.Client.create({   
             headline,
             post,
             owner
@@ -45,6 +44,10 @@ router.post('/:table', (req, res) => {
             ok: true
           });            
         }).catch(err =>{
+            console.log(!headline, "Помилка: Поля не заповнені");
+            console.log(headline.length < 3, "Помилка: Довжина має бути більше 3 символів");
+            console.log(headline.length > 32, "Помилка: Довжина має бути менше 32 символів");
+            console.log(owner != userId, "Помилка: Ви не власник");
             console.log(err);
             console.log(client);
             res.json({

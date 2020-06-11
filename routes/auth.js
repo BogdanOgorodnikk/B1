@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt-nodejs');
 const models = require('../models');
 
 
-// POST is registration
 router.post('/register', (req, res) => {
   const login = req.body.login;
   const password = req.body.password;
@@ -14,25 +13,25 @@ router.post('/register', (req, res) => {
   if(!login || !password || !passwordConfirm) {
     res.json({
         ok: false,
-        error: 'Все поля должны быть заполнены!',
+        error: 'Всі поля повинні бути заповнені!',
         fields: ['login', 'password', 'passwordConfirm']
       });
   } else if (login.length < 3 || login.length > 16) {
     res.json({
       ok: false,
-      error: 'Длина логина от 3 до 16 символов!',
+      error: 'Довжина логіна від 3 до 16 символів!',
       fields: ['login']
     });
   } else if (password.length < 6 || password.length > 16) {
     res.json({
       ok: false,
-      error: 'Длина пароль от 6 до 16 символов!',
+      error: 'Довжина пароля від 6 до 16 символоів!',
       fields: ['password']
     });
   } else if (password !== passwordConfirm) {
     res.json({
       ok: false,
-      error: 'Пароли не совпадают!',
+      error: 'Пароли не співпадають!',
       fields: ['password', 'passwordConfirm']
     });
   } else {
@@ -55,14 +54,14 @@ router.post('/register', (req, res) => {
                     console.log(err);
                     res.json({
                     ok: false,
-                    error: 'Ошибка, попробуйте позже!'
+                    error: 'Помилка, спробуйте пізніше!'
                   });
                 });
             });
         } else {
             res.json({
                 ok: false,
-                error: "Имя занято!",
+                error: "Данне ім'я зайняте!",
                 fields: ['login']
             });
         }
@@ -72,7 +71,6 @@ router.post('/register', (req, res) => {
   }
 });
 
-// POST is auth
 router.post('/login', (req, res) => {
   const login = req.body.login;
   const password = req.body.password;
@@ -80,7 +78,7 @@ router.post('/login', (req, res) => {
   if(!login || !password) {
     res.json({
         ok: false,
-        error: 'Все поля должны быть заполнены!',
+        error: 'Всі поля повинні бути заповнені',
         fields: ['login', 'password', 'passwordConfirm']
       });
   } else {
@@ -115,16 +113,14 @@ router.post('/login', (req, res) => {
       console.log(err);
       res.json({
       ok: false,
-      error: 'Ошибка, попробуйте позже!'
+      error: 'Помилка, спробуйте пізніше!'
     });
   });
   }
 });
 
-// GET for logout
 router.get('/logout', (req, res) => {
   if (req.session) {
-    // delete session object
     req.session.destroy(() => {
       res.redirect('/');
     });

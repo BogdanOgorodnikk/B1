@@ -33,6 +33,8 @@ $(document).ready(function(){
   //auth
   $('.login-button').on('click', function(e) {
     e.preventDefault();
+    $('p.register__error').remove();
+    $('.register__error').removeClass('register__error');
 
     var data = {
       login: $('#login-login').val(),

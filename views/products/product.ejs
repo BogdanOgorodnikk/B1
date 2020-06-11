@@ -22,7 +22,7 @@
                     <% if(!user.id && !user.login) { %>
                     <ul class="sign__list">
                         <li class="sign__item"><a href="/sign_in" class="sign__link">Ввійти</a></li>
-                        <li class="sign__item"><a href="/sign_up" class="sign__link">Регістрація</a></li>
+                        <li class="sign__item"><a href="/sign_up" class="sign__link">Реєстрація</a></li>
                     </ul>
                     <!-- Якщо авторизований -->
                     <% } else { %>
@@ -71,7 +71,7 @@
                 <ul class="nav__list" id="nav-main">
                     <li class="nav__item"><a href="/" class="nav__link">На головну</a></li>
                     <li class="nav__item"><a href="/tables/my_tables/<%= user.login %>" class="nav__link">Мої таблиці</a></li>
-                    <li class="nav__item"><a href="/post/add" class="nav__link">Добавити таблицю</a></li>
+                    <li class="nav__item"><a href="/post/add" class="nav__link">Створити головну таблицю</a></li>
                 </ul>
             </nav>
         </div>

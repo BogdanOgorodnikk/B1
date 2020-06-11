@@ -2,6 +2,8 @@ $(document).ready(function(){
 
 $('.publish-button').on('click', function(e) {
     e.preventDefault();
+    $('p.register__error').remove();
+    $('.register__error').removeClass('register__error');
     
     var data = {
         title: $('#post-title').val()

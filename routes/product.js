@@ -5,7 +5,6 @@ moment.locale('ru');
 
 const models = require('../models');
   
-//POST GET
   router.get('/:product', (req, res, next) => {
     const url = req.params.product.trim().replace(/ +(?= )/g, '');
     const userId = req.session.userId;
@@ -57,8 +56,4 @@ const models = require('../models');
     }
   });
   
-  
-
-
-
 module.exports = router;
